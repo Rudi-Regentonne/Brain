@@ -1,0 +1,37 @@
+[Skill("starter-skill", "Example starter AI skill written in Brain")]
+[Trigger("run starter", "starter")]
+[Requires("shell")]
+[Rule("Always confirm actions before executing dangerous commands")]
+public class StarterSkill
+{
+    [Precondition]
+    public bool CheckPrerequisites()
+    {
+        return true;
+    }
+
+    public void Run(string task = "greeting", bool verbose = false)
+    {
+        if (verbose)
+        {
+            Prompt($"Starting starter skill with task: {task}");
+        }
+
+        try
+        {
+            PerformTask(task);
+        }
+        catch (ExecutionError)
+        {
+            Prompt("Encountered an issue executing task, falling back to safe status check.");
+        }
+    }
+
+    private void PerformTask(string task)
+    {
+        Prompt($"Execute action for task: {task}");
+    }
+
+    [Example(Input = "run starter greeting", Output = "Executed greeting")]
+    public void Examples() {}
+}

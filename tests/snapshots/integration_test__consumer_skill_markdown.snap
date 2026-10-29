@@ -1,0 +1,25 @@
+---
+source: tests/integration_test.rs
+expression: consumer_content
+---
+---
+name: consumer
+description: "Consumer skill"
+platform: opencode
+---
+
+# Consumer
+
+Consumer skill
+
+<rules>
+- Always check formatting
+</rules>
+
+<instructions workflow="Run">
+1. Output: "Run consumer"
+</instructions>
+
+<procedure name="CheckFormat">
+1. Output: "Check format"
+</procedure>

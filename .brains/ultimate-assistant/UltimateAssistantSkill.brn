@@ -1,0 +1,67 @@
+using "../shared/SharedGitStandards.brn";
+using "./secondfile.brn";
+
+[Skill("ultimate-assistant", "Comprehensive AI skill demonstrating all Brain features, tools, commands, scripts, and rules")]
+[Trigger("run assistant", "assistant", "review code")]
+[Requires("git", "shell", "read-filesystem")]
+[Rule("Keep explanations concise and technical")]
+
+// Contrastive few-shot examples
+[Example(
+    Input = "review staged changes with fast mode",
+    Bad = "Looks fine to me, ship it!",
+    Good = "Inspected 3 files: 2 additions, 0 vulnerabilities. Ran scripts/lint.py with 0 errors. Staging approved."
+)]
+[Example(
+    Input = "commit with broken tests",
+    Bad = "git commit -m 'wip fix'",
+    Good = "Rejected commit: tests are failing. Run tests before committing."
+)]
+public class UltimateAssistantSkill
+{
+    // Prerequisites with nested conditional checks
+    [Precondition]
+    public bool CheckPrerequisites()
+    {
+        if ("Git repository is initialized") {
+            if ("Workspace has changes to inspect") {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Main execution workflow with typed parameters and default values
+    public void Run(string scope = "core", bool verbose = false, int maxFiles = 10)
+    {
+        if (verbose)
+        {
+            Prompt($"Starting review session for scope: {scope} with limit {maxFiles} files.");
+        }
+
+        // Call procedures imported from SharedGitStandards.brn
+        VerifyGitClean();
+        ExecuteLintScript();
+
+        try
+        {
+            // Call procedures imported from local ./secondfile.brn
+            InspectStagedChanges(scope, maxFiles);
+            ReportReviewSummary(scope);
+
+            if ("All checks and lint scripts pass")
+            {
+                Prompt($"Draft conventional commit: feat({scope}): summary of changes.");
+            }
+            else
+            {
+                Prompt("List all failed checks with specific line numbers and fixes.");
+            }
+        }
+        catch (DiffTooLargeException)
+        {
+            Prompt("Diff exceeds context threshold: falling back to file status list.");
+            FallbackFileSummary();
+        }
+    }
+}

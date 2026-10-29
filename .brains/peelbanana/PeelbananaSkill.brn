@@ -1,0 +1,33 @@
+[Skill("peelbanana", "Helper for peeling a banana")]
+[Trigger("peelbanana")]
+public class PeelbananaSkill
+{
+    [Precondition]
+    public bool CheckPrerequisites()
+    {
+        if ("Coding agent has a banana") {
+            if ("Banana is ripe") {
+                return true;
+            }
+        }
+        while("Basket is not empty") {
+            Promt("wait until Basket is full of bananas");
+        }
+
+    }
+
+    public void Run(bool fast = false)
+    {
+        if ("banana is ripe")
+        {
+            Prompt("Pinch the bottom tip and pull peels backwards.");
+        }
+        else
+        {
+            Prompt("Wait a few days until banana turns yellow.");
+        }
+    }
+
+    [Example(Input = "peel banana", Output = "Banana peeled")]
+    public void Examples() {}
+}

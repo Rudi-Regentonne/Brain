@@ -1,0 +1,8 @@
+[project]
+name = "brain-skills"
+
+[compiler]
+targets = ["opencode"]
+
+[safety]
+overwrite_foreign_skills = false

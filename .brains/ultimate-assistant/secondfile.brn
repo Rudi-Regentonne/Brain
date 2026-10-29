@@ -1,0 +1,16 @@
+[Rule("Review must analyze diff chunks with maxFiles bound")]
+public class DiffInspectorModule
+{
+    public void InspectStagedChanges(string scope, int maxFiles)
+    {
+        while ($"There are unexamined diff files (processed < {maxFiles})")
+        {
+            Prompt($"Analyze next modified file under {scope} for security and style compliance.");
+        }
+    }
+
+    public void ReportReviewSummary(string scope)
+    {
+        Prompt($"Output formatted review summary for component `{scope}`.");
+    }
+}

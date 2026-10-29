@@ -1,0 +1,30 @@
+{
+  "name": "brain-lang",
+  "displayName": "Brain Language Support",
+  "description": "Syntax highlighting and language support for Brain (.brn) AI skill files",
+  "version": "0.1.0",
+  "publisher": "brain",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "brain",
+        "aliases": ["Brain", "brain"],
+        "extensions": [".brn"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "brain",
+        "scopeName": "source.brn",
+        "path": "./syntaxes/brain.tmLanguage.json"
+      }
+    ]
+  }
+}

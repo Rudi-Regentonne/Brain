@@ -1,0 +1,15 @@
+id = "brain"
+name = "Brain"
+version = "0.1.0"
+schema_version = 1
+authors = ["Brain Authors"]
+description = "Brain (.brn) AI skill language support"
+repository = "https://github.com/example/brain"
+languages = ["languages/brain"]
+themes = []
+icon_themes = []
+capabilities = []
+
+[grammars.c_sharp]
+repository = "https://github.com/tree-sitter/tree-sitter-c-sharp"
+rev = "8c0abe0b84a3681d3e6852ce2e2a1eecb4f731c5"

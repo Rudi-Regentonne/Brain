@@ -1,0 +1,11 @@
+name = "Brain"
+grammar = "c_sharp"
+path_suffixes = ["brn"]
+line_comments = ["// "]
+block_comment = ["/*", "*/"]
+brackets = [
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "[", end = "]", close = true, newline = true },
+    { start = "(", end = ")", close = true, newline = true },
+]
+autoclose_before = ";:.,=}])> \n\t"

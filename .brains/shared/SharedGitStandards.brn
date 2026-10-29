@@ -1,0 +1,22 @@
+// Shared git standards, guardrails, and helper routines
+[Guardrail("Never execute `git push --force` or delete untracked files without confirmation")]
+[Never("commit secrets, private keys, or `.env` credential files")]
+[Rule("Ensure all code changes adhere to project formatting standards")]
+[Rule("Format commit messages according to Conventional Commits")]
+public class SharedGitStandards
+{
+    public void VerifyGitClean()
+    {
+        Execute("git status");
+    }
+
+    public void FallbackFileSummary()
+    {
+        Execute("git status -s");
+    }
+
+    public void ExecuteLintScript()
+    {
+        Execute("python3 scripts/lint.py");
+    }
+}
